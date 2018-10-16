@@ -6,15 +6,14 @@ from colas import colas
 def processApiAction(action):
     print('Process API -> ' + action)
     if action in ('up', 'down', 'left', 'right', 'stop', 'auto'):
-        qrBT.put(msg)
+        qrBT.put(action)
     elif action == 'camera':
         print("Camara")
 
 def processBTAction():
-    print('Process BT -> ' + action)
     msg = qpBT.get()
+    print('Process BT -> ' + msg)
     return msg
-
 
 
 class ControlApiRest(Resource):
