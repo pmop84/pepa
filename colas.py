@@ -1,0 +1,24 @@
+
+class colas():
+    def __init__(self, name):
+        self.qFile = "/tmp/q" + name
+
+    def create(self):
+        self.put('')
+
+    def put(self, msg):
+        pipe = open(self.qFile, "w")
+        pipe.write(msg)
+        pipe.close();
+
+    def get(self):
+        pipe = open(self.qFile, "r")
+        msg = pipe.read()
+        pipe.close()
+        self.put('')
+        if not msg:
+            msg = ''
+        return msg
+
+
+
