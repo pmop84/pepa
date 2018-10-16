@@ -10,7 +10,7 @@ def processApiAction(action):
     elif action == 'camera':
         print("Camara")
 
-def processBTAction(self):
+def processBTAction():
     print('Process BT -> ' + action)
     msg = qpBT.get()
     return msg
