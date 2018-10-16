@@ -67,6 +67,12 @@ if __name__ == '__main__':
 
     pepaBaseAddr = "98:D3:31:FC:3C:61"
 
+    qrBT  = colas("rBT")
+    qpBT = colas("pBT")
+    qrBT.create()
+    qpBT.create()
+
+
     btObj = btcomm(pepaBaseAddr)
     btObj.start()
     btObj.join()
