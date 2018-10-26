@@ -35,7 +35,7 @@ class ResponseApiRest(Resource):
 
 if __name__ == '__main__':
 
-    pepaIP = "192.168.1.9"
+    pepaIP = "192.168.1.252"
     pepaPort = 8004
     qrRes = colas("rRest")
     qpRes = colas("pRest")
