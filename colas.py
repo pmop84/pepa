@@ -9,7 +9,7 @@ class colas():
     def put(self, msg):
         pipe = open(self.qFile, "w")
         pipe.write(msg)
-        pipe.close();
+        pipe.close()
 
     def get(self):
         pipe = open(self.qFile, "r")

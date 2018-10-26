@@ -57,7 +57,7 @@ class btcomm(Thread):
                     exit(2)
         print("BT: Connected")
         # self.sock.setblocking(0)
-        self.sock.send("Hola Pepa!!")
+        # self.sock.send("Hola Pepa!!")
 
     def closeBT(self):
         self.sock.close()
