@@ -76,6 +76,5 @@ if __name__ == '__main__':
     btObj = btcomm(pepaBaseAddr)
     btObj.setDaemon(True)
     btObj.start()
-    btObj.join()
 
 

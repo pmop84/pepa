@@ -5,7 +5,7 @@ from colas import colas
 
 def processApiAction(action):
     print('Process API -> ' + action)
-    if action in ('up', 'down', 'left', 'right', 'stop', 'auto'):
+    if action in ('up', 'down', 'left', 'right', 'stop', 'auto', 'light'):
         qrBT.put(action)
     elif action == 'camera':
         print("Camara")
@@ -24,7 +24,7 @@ class ControlApiRest(Resource):
         return "OK", 200
 
 
-class ResponseApiRest(Resource):
+class RequestApiRest(Resource):
 
     def get(self,name):
         msg=''
@@ -37,15 +37,13 @@ if __name__ == '__main__':
 
     pepaIP = "192.168.1.252"
     pepaPort = 8004
-    qrRes = colas("rRest")
-    qpRes = colas("pRest")
     qrBT  = colas("rBT")
     qpBT = colas("pBT")
 
     app = Flask(__name__)
     api = Api(app)
     api.add_resource(ControlApiRest, "/pepa/Control/<string:name>")
-    api.add_resource(ResponseApiRest, "/pepa/Request/<string:name>")
+    api.add_resource(RequestApiRest, "/pepa/Request/<string:name>")
 
 
     app.run(host=pepaIP, port=pepaPort, debug=True)
