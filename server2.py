@@ -6,8 +6,11 @@ from threading import Thread
 
 class btread(Thread):
 
-    def __init__(self, _btserial):
+    def __init__(self, _btserial,):
         self.bts=_btserial
+        self.qpBT = colas("pBT")
+        self.qpBT.create()
+
         Thread.__init__(self)
 
     def run(self):
@@ -24,6 +27,8 @@ class btwrite(Thread):
 
     def __init__(self, _btserial):
         self.bts=_btserial
+        self.qrBT = colas("rBT")
+        self.qrBT.create()
         Thread.__init__(self)
 
     def run(self):
@@ -43,10 +48,7 @@ if __name__ == '__main__':
     # rfcomm bind 1 98:D3:31:FC:3C:61 1
 
     btserial = serial.Serial("/dev/rfcomm1", baudrate=9600)
-    qrBT = colas("rBT")
-    qpBT = colas("pBT")
-    qrBT.create()
-    qpBT.create()
+
 
     btObjread = btread(btserial)
     btObjwrite = btwrite(btserial)
