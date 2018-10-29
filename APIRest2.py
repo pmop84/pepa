@@ -38,7 +38,7 @@ def manageRequest():
 
 @app.route('/pepa/<filename>')
 def index(filename):
-    return render_template(filename)
+    return render_template('templates/'+filename)
 
 
 @app.route('/pepa/Camera')
