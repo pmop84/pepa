@@ -38,11 +38,11 @@ def manageRequest():
 
 @app.route('/pepa/<filename>')
 def index(filename):
-    return render_template('index.html')
+    return render_template(filename)
 
 
 @app.route('/pepa/Camera')
-def video_feed(self):
+def video_feed():
     return Response(generate(Camera()), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
