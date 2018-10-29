@@ -36,9 +36,9 @@ def manageRequest():
     print('MSG Recibido de (qpBT->): ' + msg)
     return Response(msg)
 
-@app.route('/pepa/<filename>')
-def index(filename):
-    return render_template(filename)
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 
 @app.route('/pepa/Camera')
