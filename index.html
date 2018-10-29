@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <title>JSMpeg Stream Client</title>
+        <style type="text/css">
+                html, body {
+                        background-color: #111;
+                        text-align: center;
+                }
+        </style>
+
+</head>
+
+
+<BODY>
+        <script type="text/javascript">
+        function envia(action) {
+                var req = new XMLHttpRequest();
+                req.open('GET','http://192.168.1.252:8004/pepa/Control/'+action);
+                req.send();
+                if (req.status == 200)
+                        dump(req.ResponseText);
+        }
+        function toggleWebcam() {
+                var text = document.getElementById("webcam").firstChild;
+                text.data = text.data == "play" ? "noplay" : "play";
+                }
+        function toggleAuto() {
+                var text = document.getElementById("auto").firstChild;
+                text.data = text.data == "auto" ? "noauto" : "auto";
+                }
+        </script>
+
+<TABLE ALIGN=center>
+
+<TR>
+<TD ALIGN=center><BUTTON TYPE=button ID="webcam" onclick="toggleWebcam();envia('c')">play</BUTTON></TD>
+<TD ALIGN=center><BUTTON TYPE=button ID="auto" onclick="toggleAuto();envia('a')">auto</BUTTON></TD>
+<TD ALIGN=center><BUTTON TYPE=button ID="light" onclick="envia('i')">light</BUTTON></TD>
+</TR>
+
+<TR>
+<TD></TD>
+<TD ALIGN=center><BUTTON TYPE=button onclick="envia('u')">up</BUTTON></TD>
+<TD></TD>
+</TR>
+
+<TR>
+<TD ALIGN=center><BUTTON TYPE=button onclick="envia('l')">left</BUTTON></TD>
+<TD ALIGN=center><BUTTON TYPE=button onclick="envia('s')">stop</BUTTON></TD>
+<TD ALIGN=center><BUTTON TYPE=button onclick="envia('r')">right</BUTTON></TD>
+</TR>
+
+<TR>
+<TD></TD>
+<TD ALIGN=center><BUTTON TYPE=button onclick="envia('d')">down</BUTTON></TD>
+<TD></TD>
+</TR>
+
+</TABLE>
+</BODY>
+</HTML>

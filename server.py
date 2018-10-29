@@ -16,17 +16,22 @@ class btcomm(Thread):
 
     def run(self):
         msg = ''
-        while msg != 'bye':
-            time.sleep(0.2)
+        while True:
+            print("Waitingfor message" )
+            time.sleep(1)
             msg = self.qrBT.get()
             if len(msg) > 0:
                 print("BT Sending [%s]" % msg)
-                self.sock.send(msg + '\n')
-            msg = self.sock.recv(1024).strip()
-            if len(msg) > 0:
-                print("BT receiving [%s]" % msg)
-                self.qpBT.put(msg)
-
+                self.sock.send(msg)
+            self.sock.send('t')
+            try:
+                msg = self.sock.recv(1024).strip()
+                if len(msg) > 0:
+                    print("BT receiving [%s]" % msg)
+                    self.qpBT.put(msg)
+            except:
+                print("Nothing received")
+                pass
 
     def opentBT(self):
         # nearby_devices = discover_devices(addr)
@@ -49,6 +54,7 @@ class btcomm(Thread):
             print(" BT: Trying to connect " + name + " " + str(count) + "/3")
             try:
                 self.sock.connect((self.btaddr, port))
+                self.sock.settimeout(1.0)
                 break
             except:
                 count = count + 1
@@ -57,7 +63,7 @@ class btcomm(Thread):
                     exit(2)
         print("BT: Connected")
         # self.sock.setblocking(0)
-        # self.sock.send("Hola Pepa!!")
+        self.sock.send("light")
 
     def closeBT(self):
         self.sock.close()
@@ -74,7 +80,6 @@ if __name__ == '__main__':
 
 
     btObj = btcomm(pepaBaseAddr)
-    btObj.setDaemon(True)
+    #btObj.setDaemon(True)
     btObj.start()
-
 
