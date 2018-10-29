@@ -1,5 +1,5 @@
 import cv2
-from base_camera import BaseCamera
+from templates.base_camera import BaseCamera
 
 
 class Camera(BaseCamera):
