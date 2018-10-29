@@ -49,7 +49,7 @@ def generate(Camera):
 class IpCamera(Resource):
 
     def get(self):
-        return generate(Camera()),mimetype='multipart/x-mixed-replace; boundary=frame'
+        return generate(Camera()),200,mimetype='multipart/x-mixed-replace; boundary=frame'
 
 if __name__ == '__main__':
 
